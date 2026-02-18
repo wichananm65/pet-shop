@@ -3,7 +3,7 @@
 import React from "react"
 import Image from "next/image"
 
-import Section from "../common/Section"
+import Section from "./Section"
 import useShoppingMall from "@/hooks/product/useShoppingMall"
 
 const ShoppingMallSection = () => {

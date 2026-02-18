@@ -7,13 +7,18 @@ import {
     CarouselItem,
     type CarouselApi,
 } from "@/components/ui/carousel"
+import useBanner from "@/hooks/banner/useBanner"
 
 const CarouselSpacing = () => {
-    const images = [
+    const { banners } = useBanner(10)
+
+    const fallback = [
         "/banner/04a429f3667447618ad41d1ddc3941295098953b.jpg",
         "/banner/3a2c4a01b382255d010fdce9b9c5942f82297af9.jpg",
         "/banner/8b1361654080c673a9ff07dd0f7ea6d51422c8b1 (1).jpg",
     ]
+
+    const images = banners && banners.length > 0 ? banners.map((b) => b.bannerImg ?? "") : fallback
 
     const [api, setApi] = React.useState<CarouselApi | null>(null)
     const [selected, setSelected] = React.useState(0)

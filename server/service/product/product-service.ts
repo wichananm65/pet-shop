@@ -31,6 +31,7 @@ export async function listShoppingMall(): Promise<ShoppingMallItem[]> {
   return (await res.json()) as ShoppingMallItem[]
 }
 
+
 /**
  * Dev-only: reset product table on the backend. The backend only allows this when
  * ALLOW_RESET_PRODUCTS=1 is set (server-side check).

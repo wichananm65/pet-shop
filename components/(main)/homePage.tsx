@@ -4,8 +4,9 @@ import React, { useState, useEffect } from "react";
 import LoginModal from "./LoginModal";
 import CarouselSpacing from "../common/Carousel";
 import { useAuth } from "@/components/common/AuthProvider";
-import ShoppingMallSection from "./ShoppingMallSection";
-import CategorySection from "./CategorySection";
+import ShoppingMallSection from "../common/Section/ShoppingMallSection";
+import RecommendedSection from "../common/Section/RecommendedSection";
+import CategorySection from "../common/Section/CategorySection";
 
 
 export default function HomePage() {
@@ -29,10 +30,9 @@ export default function HomePage() {
 				<div className="w-2/3">
 					<ShoppingMallSection />
 					<CategorySection />
+					<RecommendedSection />
 				</div>
-				
 			</div>
-
 
 			{showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
 		</div>

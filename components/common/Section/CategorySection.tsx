@@ -1,7 +1,7 @@
 "use client"
 
-import Section from "../common/Section/Section"
-import CategoryCard from "../common/CategoryCard/CategoryCard"
+import Section from "./Section"
+import CategoryCard from "../CategoryCard/CategoryCard"
 
 const categories = [
     { filename: "Animal _food.png", name: "Animal food" },
