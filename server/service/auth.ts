@@ -24,6 +24,7 @@ export type LoginResponse = {
     lastName: string;
     phone?: string;
     gender?: string;
+    avatarUrl?: string;
   };
 };
 

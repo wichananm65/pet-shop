@@ -1,0 +1,9 @@
+{
+  "profile": {
+    "account": "Account",
+    "recent_orders": "Recent Orders",
+    "saved_addresses": "Saved Addresses",
+    "change_language": "Change Language",
+    "logout": "Logout"
+  }
+}

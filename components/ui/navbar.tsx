@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { Home, Bell, ShoppingCart, Heart, Search} from 'lucide-react';
+import { Home, Bell, ShoppingCart, Heart, Search } from 'lucide-react';
 import ProfileButton from '@/components/common/ProfileButton';
 
 export default function NavBar() {

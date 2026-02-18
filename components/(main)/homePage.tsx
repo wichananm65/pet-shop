@@ -1,27 +1,38 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import LoginModal from "./LoginModal";
 import CarouselSpacing from "../common/Carousel";
 import { useAuth } from "@/components/common/AuthProvider";
+import ShoppingMallSection from "./ShoppingMallSection";
+import CategorySection from "./CategorySection";
 
 
 export default function HomePage() {
-	const { isAuthenticated } = useAuth();
+	useAuth();
 	const [showLogin, setShowLogin] = useState(false);
+	const [, setMounted] = useState(false);
+
+	useEffect(() => {
+		const id = window.setTimeout(() => setMounted(true), 0);
+		return () => window.clearTimeout(id);
+	}, []);
 
 	return (
 		<div>
-			<header style={{ display: "flex", justifyContent: "space-between", padding: 16 }}>
-				<div>
-					<button onClick={() => setShowLogin(true)}>{isAuthenticated ? 'Account' : 'Sign in'}</button>
-				</div>
-			</header>
 
-			<div className="flex justify-center items-center">
+			<div className="flex justify-center items-center mt-8">
 				<CarouselSpacing />
 			</div>
-            
+
+			<div className="flex justify-center items-center mt-8 ">
+				<div className="w-2/3">
+					<ShoppingMallSection />
+					<CategorySection />
+				</div>
+				
+			</div>
+
 
 			{showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
 		</div>

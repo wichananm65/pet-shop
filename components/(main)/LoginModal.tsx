@@ -4,8 +4,11 @@ import React, { useState } from "react";
 import { signIn } from "../../server/service/auth";
 import Toast from "../ui/Toast";
 import { validateEmail, validatePassword } from "../../utils/validation";
-import { Field, FieldLabel, FieldContent, FieldError } from "../ui/field";
+import { FieldError } from "../ui/field";
+import Image from "next/image";
+import { Mail, Lock } from "lucide-react";
 import { useAuth } from "@/components/common/AuthProvider";
+import RegisterModal from "./RegisterModal";
 
 export default function LoginModal({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState("");
@@ -15,7 +18,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
   const [passwordError, setPasswordError] = useState<string | null>(null);
   const [toast, setToast] = useState<{ message: string; type?: "error" | "success" } | null>(null);
   const { login } = useAuth();
-  const { isAuthenticated } = useAuth();
+  const [showRegister, setShowRegister] = useState(false);
 
   function showToast(message: string, type: "error" | "success" = "error") {
     setToast({ message, type });
@@ -42,7 +45,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
     setLoading(true);
     try {
       const res = await signIn({ email, password });
-      login(res.token);
+      login(res.token, res.user);
       showToast("Signed in successfully", "success");
       onClose();
     } catch (err: unknown) {
@@ -72,55 +75,69 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
           zIndex: 9999,
         }}
       >
-        <div style={{ background: "white", padding: 24, borderRadius: 8, width: 360 }}>
-          <h3 style={{ marginTop: 0 }}>Sign in</h3>
-          <form onSubmit={handleSubmit}>
-            <Field style={{ marginBottom: 8 }}>
-              <FieldLabel>Email</FieldLabel>
-              <FieldContent>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                    if (emailError) setEmailError(null);
-                  }}
-                  required
-                  style={{ width: "100%", padding: 8 }}
-                />
-                <FieldError>{emailError ?? undefined}</FieldError>
-              </FieldContent>
-            </Field>
+        <div className="bg-white rounded-xl w-90 sm:w-105 p-8 shadow-lg">
+          <div className="flex flex-col items-center">
+            <Image src="/logo.png" alt="Meow Meow" width={160} height={120} className="mb-6" />
+            <form onSubmit={handleSubmit} className="w-full">
+              <div className="mb-4">
+                <label className="relative block">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400" />
+                  <input
+                    type="email"
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (emailError) setEmailError(null);
+                    }}
+                    placeholder="อีเมล"
+                    required
+                    className="w-full pl-10 pr-4 py-3 border-b border-gray-200 placeholder-muted-foreground outline-none focus:border-orange-400"
+                  />
+                </label>
+                <FieldError className="mt-2">{emailError ?? undefined}</FieldError>
+              </div>
 
-            <Field style={{ marginBottom: 12 }}>
-              <FieldLabel>Password</FieldLabel>
-              <FieldContent>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                    if (passwordError) setPasswordError(null);
-                  }}
-                  required
-                  style={{ width: "100%", padding: 8 }}
-                />
-                <FieldError>{passwordError ?? undefined}</FieldError>
-              </FieldContent>
-            </Field>
-            <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
-              {isAuthenticated && (
-                <button type="button" onClick={onClose} style={{ padding: "8px 12px" }} disabled={loading}>
-                  Cancel
+              <div className="mb-6">
+                <label className="relative block">
+                  <Lock className="absolute left-3 top-1/2 -translate-y-1/2 text-orange-400" />
+                  <input
+                    type="password"
+                    value={password}
+                    onChange={(e) => {
+                      setPassword(e.target.value);
+                      if (passwordError) setPasswordError(null);
+                    }}
+                    placeholder="รหัสผ่าน"
+                    required
+                    className="w-full pl-10 pr-4 py-3 border-b border-gray-200 placeholder-muted-foreground outline-none focus:border-orange-400"
+                  />
+                </label>
+                <FieldError className="mt-2">{passwordError ?? undefined}</FieldError>
+              </div>
+
+              <div className="space-y-3">
+                <button
+                  type="submit"
+                  disabled={loading}
+                  className="w-full rounded-full py-3 bg-linear-to-r from-orange-500 to-yellow-400 text-white text-lg font-medium shadow-md"
+                >
+                  {loading ? "Signing in..." : "เข้าสู่ระบบ"}
                 </button>
-              )}
-              <button type="submit" style={{ padding: "8px 12px" }} disabled={loading}>
-                {loading ? "Signing in..." : "Sign in"}
-              </button>
-            </div>
-          </form>
+
+                <button
+                  type="button"
+                  onClick={() => setShowRegister(true)}
+                  className="w-full rounded-full py-3 border border-orange-300 text-orange-500 bg-white"
+                >
+                  สมัครสมาชิก
+                </button>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
+
+      {showRegister && <RegisterModal onClose={() => setShowRegister(false)} />}
 
       {toast && <Toast message={toast.message} type={toast.type} />}
     </>
