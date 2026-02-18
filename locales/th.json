@@ -1,0 +1,9 @@
+{
+  "profile": {
+    "account": "บัญชี",
+    "recent_orders": "การสั่งซื้อล่าสุด",
+    "saved_addresses": "ที่อยู่ที่บันทึกไว้",
+    "change_language": "เปลี่ยนภาษา",
+    "logout": "ออกจากระบบ"
+  }
+}
