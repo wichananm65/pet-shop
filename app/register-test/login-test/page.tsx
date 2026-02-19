@@ -12,7 +12,10 @@ type RegisterResponse = {
   gender: string;
 };
 
+import useTranslator from "@/hooks/useTranslator"
+
 export default function RegisterTestPage() {
+  const { t } = useTranslator()
   const [form, setForm] = useState({
     email: "",
     password: "",
@@ -50,7 +53,7 @@ export default function RegisterTestPage() {
   return (
     <div className="min-h-screen bg-slate-950 text-white px-6 py-10">
       <div className="mx-auto max-w-lg rounded-2xl bg-slate-900 p-8 shadow-lg">
-        <h1 className="text-2xl font-semibold">Register Test</h1>
+        <h1 className="text-2xl font-semibold">{t("test.registerTest")}</h1>
         <p className="mt-2 text-sm text-slate-400">
           POST /api/v1/sign-up
         </p>
@@ -127,14 +130,14 @@ export default function RegisterTestPage() {
             disabled={loading}
             className="w-full rounded-lg bg-emerald-500 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-400 disabled:opacity-70"
           >
-            {loading ? "Creating account..." : "Create account"}
+            {loading ? t("test.creatingAccount") : t("test.createAccount")}
           </button>
         </form>
 
         <div className="mt-6">
-          <h2 className="text-sm font-medium text-slate-300">Response</h2>
+          <h2 className="text-sm font-medium text-slate-300">{t("test.response")}</h2>
           <pre className="mt-2 max-h-60 overflow-auto rounded-lg bg-slate-950 p-3 text-xs text-slate-300">
-            {result || "No response yet."}
+            {result || t("test.noResponse")}
           </pre>
         </div>
       </div>

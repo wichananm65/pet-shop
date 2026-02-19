@@ -3,9 +3,12 @@ import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { ChevronRightIcon } from "lucide-react"
+import useTranslator from "@/hooks/useTranslator"
 
 export type SectionProps = {
   name: React.ReactNode
+  /** optional content rendered on the right side of the header */
+  headerRight?: React.ReactNode
   /** show small "see more" in the header (uses `href` or `onSeeMore`) */
   seeMore?: boolean
   /** show large centered "See more" button below content */
@@ -49,6 +52,7 @@ function getGridClass(grid?: number | string) {
  */
 export default function Section({
   name,
+  headerRight,
   seeMore = false,
   showMore = false,
   grid,
@@ -59,43 +63,51 @@ export default function Section({
   id,
 }: SectionProps) {
   const gridCls = getGridClass(grid)
+  const { t } = useTranslator()
 
   return (
-    <section id={id} className={cn("mb-6 rounded-md shadow-sm overflow-hidden", className)}>
-      <div className="flex items-center justify-between bg-orange-50 px-4 py-2">
+    <section id={id} className={cn("mb-6", className)}>
+      {/* header: separate box with its own shadow and rounded top */}
+      <div className="flex items-center justify-between bg-orange-50 px-4 py-2 shadow-sm rounded-t-md">
         <h3 className="text-sm font-semibold text-gray-800">{name}</h3>
 
-        {seeMore && (
-          <div>
-            {href ? (
-              <Link
-                href={href}
-                className="inline-flex items-center gap-2 text-sm text-orange-600 hover:underline"
-                aria-label={`See more ${typeof name === "string" ? name : "section"}`}>
-                <span>see more</span>
-                <ChevronRightIcon className="w-5 h-5 text-black" />
-              </Link>
-            ) : (
-              <button
-                type="button"
-                onClick={onSeeMore}
-                className="inline-flex items-center gap-2 text-sm text-orange-600 hover:underline"
-                aria-label={`See more ${typeof name === "string" ? name : "section"}`}>
-                <span>see more</span>
-                <ChevronRightIcon className="w-5 h-5 text-black"/>
-              </button>
-            )}
-          </div>
-        )}
+        <div className="flex items-center gap-4">
+          {/** headerRight appears before the optional See more control */}
+          {headerRight && <div className="text-sm text-muted-foreground">{headerRight}</div>}
+
+          {seeMore && (
+            <div>
+              {href ? (
+                <Link
+                  href={href}
+                  className="inline-flex items-center gap-2 text-sm text-orange-600 hover:underline"
+                  aria-label={`${t("section.seeMore")} ${typeof name === "string" ? name : "section"}`}>
+                  <span>{t("section.seeMore")}</span>
+                  <ChevronRightIcon className="w-5 h-5 text-black" />
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  onClick={onSeeMore}
+                  className="inline-flex items-center gap-2 text-sm text-orange-600 hover:underline"
+                  aria-label={`${t("section.seeMore")} ${typeof name === "string" ? name : "section"}`}>
+                  <span>{t("section.seeMore")}</span>
+                  <ChevronRightIcon className="w-5 h-5 text-black"/>
+                </button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
 
-      <div className="bg-white p-4">
+      {/* body: separate box with its own shadow, rounded bottom, and thin top border */}
+      <div className="bg-white p-4 shadow-sm rounded-b-md border-t border-gray-200 mt-4">
         <div className={cn(gridCls)}>{children}</div>
 
         {showMore && (
           <div className="mt-6 flex justify-center">
             <Button variant="default" size="lg" className="w-44">
-              See more
+              {t("section.seeMore")}
             </Button>
           </div>
         )}

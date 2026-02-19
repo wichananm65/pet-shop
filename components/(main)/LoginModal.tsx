@@ -9,6 +9,7 @@ import Image from "next/image";
 import { Mail, Lock } from "lucide-react";
 import { useAuth } from "@/components/common/AuthProvider";
 import RegisterModal from "./RegisterModal";
+import useTranslator from "@/hooks/useTranslator";
 
 export default function LoginModal({ onClose }: { onClose: () => void }) {
   const [email, setEmail] = useState("");
@@ -19,6 +20,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
   const [toast, setToast] = useState<{ message: string; type?: "error" | "success" } | null>(null);
   const { login } = useAuth();
   const [showRegister, setShowRegister] = useState(false);
+  const { t } = useTranslator();
 
   function showToast(message: string, type: "error" | "success" = "error") {
     setToast({ message, type });
@@ -89,7 +91,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
                       setEmail(e.target.value);
                       if (emailError) setEmailError(null);
                     }}
-                    placeholder="อีเมล"
+                    placeholder={t("auth.emailPlaceholder")}
                     required
                     className="w-full pl-10 pr-4 py-3 border-b border-gray-200 placeholder-muted-foreground outline-none focus:border-orange-400"
                   />
@@ -107,7 +109,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
                       setPassword(e.target.value);
                       if (passwordError) setPasswordError(null);
                     }}
-                    placeholder="รหัสผ่าน"
+                    placeholder={t("auth.passwordPlaceholder")}
                     required
                     className="w-full pl-10 pr-4 py-3 border-b border-gray-200 placeholder-muted-foreground outline-none focus:border-orange-400"
                   />
@@ -121,7 +123,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
                   disabled={loading}
                   className="w-full rounded-full py-3 bg-linear-to-r from-orange-500 to-yellow-400 text-white text-lg font-medium shadow-md"
                 >
-                  {loading ? "Signing in..." : "เข้าสู่ระบบ"}
+                  {loading ? t("auth.signingIn") : t("auth.signIn")}
                 </button>
 
                 <button
@@ -129,7 +131,7 @@ export default function LoginModal({ onClose }: { onClose: () => void }) {
                   onClick={() => setShowRegister(true)}
                   className="w-full rounded-full py-3 border border-orange-300 text-orange-500 bg-white"
                 >
-                  สมัครสมาชิก
+                  {t("auth.register")}
                 </button>
               </div>
             </form>

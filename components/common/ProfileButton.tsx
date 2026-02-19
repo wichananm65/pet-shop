@@ -75,7 +75,7 @@ export default function ProfileButton() {
                     </DropdownMenuItem>
                     <div className="flex justify-between">
                         <Button onClick={() => setLang(lang === "en" ? "th" : "en")}>
-                            เปลี่ยนภาษา / Languages
+                            {t("profile.change_language")}
                             <LanguageSwitch />
                         </Button>
                     </div>

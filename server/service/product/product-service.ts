@@ -31,6 +31,29 @@ export async function listShoppingMall(): Promise<ShoppingMallItem[]> {
   return (await res.json()) as ShoppingMallItem[]
 }
 
+// --- API v1 product detail (backend returns `productID`, `productName`, `productNameTH`, `productPrice`, `productImg`, `productDesc`, `productDescTH`, `score`, `category`) ---
+export type ProductV1Dto = {
+  productID: number
+  productName?: string | null
+  productNameTH?: string | null
+  productPrice?: number | null
+  productImg?: string | null
+  productDesc?: string | null
+  productDescTH?: string | null
+  score?: number | null
+  category?: string | null
+}
+
+export async function getProductV1(id: number): Promise<ProductV1Dto> {
+  const url = API_BASE_URL ? `${API_BASE_URL}/api/v1/product/${id}` : `/api/v1/product/${id}`
+  const res = await fetch(url)
+  if (!res.ok) {
+    const txt = await res.text().catch(() => res.statusText)
+    throw new Error(txt || "failed to fetch product")
+  }
+  return (await res.json()) as ProductV1Dto
+}
+
 
 /**
  * Dev-only: reset product table on the backend. The backend only allows this when

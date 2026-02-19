@@ -2,34 +2,33 @@
 
 import Section from "../common/Section/Section"
 import CategoryCard from "../common/CategoryCard/CategoryCard"
-
-const categories = [
-    { filename: "Animal _food.png", name: "Animal food" },
-    { filename: "pet_supplies.png", name: "Pet supplies" },
-    { filename: "Clothes_and_accessories.png", name: "Clothes and accessories" },
-    { filename: "Cleaning_equipment.png", name: "Cleaning equipment" },
-    { filename: "sand_and_bathroom.png", name: "Sand and bathroom" },
-    { filename: "Hygiene_care.png", name: "Hygiene care" },
-    { filename: "Cat_snacks.png", name: "Cat snacks" },
-    { filename: "Cat_exercise.png", name: "Cat exercise" },
-]
+import useCategory from "@/hooks/category/useCategory"
+import useTranslator from "@/hooks/useTranslator"
 
 function slugify(s: string) {
-    return s.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "")
+  // keep characters but safely encode for URL (works with non-Latin names)
+  return encodeURIComponent(s.toLowerCase().replace(/\s+/g, "-"))
 }
 
 const CategorySection = () => {
-    return (
-        <Section name="Category" href="/categories" grid="grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4" seeMore={false}>
-            {categories.map((c) => (
-                <CategoryCard
-                    key={c.name}
-                    name={c.name}
-                    imageSrc={`/Category/${encodeURIComponent(c.filename)}`}
-                    href={`/shopping-mall/${slugify(c.name)}`}
-                />
-            ))}
-        </Section>
-    )
+  const { categories, loading } = useCategory(100)
+  const { t } = useTranslator()
+
+  // render only server-provided categories (no static fallback)
+  const items = (categories || []).map((c) => ({ name: c.categoryName, imageSrc: c.categoryImg ? encodeURI(c.categoryImg) : undefined }))
+
+  return (
+    <Section name={t("section.category")} href="/categories" grid="grid-cols-2 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-8 gap-4" seeMore={false}>
+      {loading && items.length === 0 ? (
+        Array.from({ length: 8 }).map((_, i) => (
+          <div key={i} className="rounded-md bg-gray-100 aspect-square overflow-hidden shadow-sm" />
+        ))
+      ) : (
+        items.map((c) => (
+          <CategoryCard key={c.name} name={c.name} imageSrc={c.imageSrc} href={`/shopping-mall/${slugify(c.name)}`} />
+        ))
+      )}
+    </Section>
+  )
 }
 export default CategorySection

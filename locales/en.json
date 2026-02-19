@@ -5,5 +5,41 @@
     "saved_addresses": "Saved Addresses",
     "change_language": "Change Language",
     "logout": "Logout"
+  },
+  "home": "Home",
+  "shoppingMall": {
+    "title": "Shopping Mall",
+    "totalItems": "Total number of products: {count} items"
+  },
+  "section": {
+    "seeMore": "See more",
+    "recommended": "Recommended",
+    "category": "Category"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signingIn": "Signing in...",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "Password"
+  },
+  "test": {
+    "loginTitle": "Login Test",
+    "registerTest": "Register Test",
+    "response": "Response",
+    "noResponse": "No response yet.",
+    "createAccount": "Create account",
+    "creatingAccount": "Creating account..."
+  },
+  "breadcrumb": {
+    "components": "Components",
+    "page": "Breadcrumb"
+  },
+  "product": {
+    "addToCart": "Add To Cart",
+    "buyNow": "Buy Now",
+    "quantity": "Quantity"
   }
 }

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { postJson } from "@/server/service/api";
+import useTranslator from "@/hooks/useTranslator";
 
 type LoginResponse = {
   message: string;
@@ -44,35 +45,37 @@ export default function LoginTestPage() {
     }
   };
 
+  const { t } = useTranslator()
+
   return (
     <div className="min-h-screen bg-slate-950 text-white px-6 py-10">
       <div className="mx-auto max-w-lg rounded-2xl bg-slate-900 p-8 shadow-lg">
-        <h1 className="text-2xl font-semibold">Login Test</h1>
+        <h1 className="text-2xl font-semibold">{t("test.loginTitle")}</h1>
         <p className="mt-2 text-sm text-slate-400">
           POST /api/v1/sign-in
         </p>
 
         <form onSubmit={handleSubmit} className="mt-6 space-y-4">
           <label className="block">
-            <span className="text-sm text-slate-300">Email</span>
+            <span className="text-sm text-slate-300">{t("auth.email")}</span>
             <input
               type="email"
               required
               value={email}
               onChange={(event) => setEmail(event.target.value)}
               className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm"
-              placeholder="you@example.com"
+              placeholder={t("auth.emailPlaceholder") || "you@example.com"}
             />
           </label>
           <label className="block">
-            <span className="text-sm text-slate-300">Password</span>
+            <span className="text-sm text-slate-300">{t("auth.password")}</span>
             <input
               type="password"
               required
               value={password}
               onChange={(event) => setPassword(event.target.value)}
               className="mt-1 w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm"
-              placeholder="••••••••"
+              placeholder={t("auth.passwordPlaceholder") || "••••••••"}
             />
           </label>
           <button
@@ -80,14 +83,14 @@ export default function LoginTestPage() {
             disabled={loading}
             className="w-full rounded-lg bg-indigo-500 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-400 disabled:opacity-70"
           >
-            {loading ? "Signing in..." : "Sign in"}
+            {loading ? t("auth.signingIn") : t("auth.signIn")}
           </button>
         </form>
 
         <div className="mt-6">
-          <h2 className="text-sm font-medium text-slate-300">Response</h2>
+          <h2 className="text-sm font-medium text-slate-300">{t("test.response")}</h2>
           <pre className="mt-2 max-h-60 overflow-auto rounded-lg bg-slate-950 p-3 text-xs text-slate-300">
-            {result || "No response yet."}
+            {result || t("test.noResponse")}
           </pre>
         </div>
       </div>

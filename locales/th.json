@@ -5,5 +5,41 @@
     "saved_addresses": "ที่อยู่ที่บันทึกไว้",
     "change_language": "เปลี่ยนภาษา",
     "logout": "ออกจากระบบ"
+  },
+  "home": "หน้าหลัก",
+  "shoppingMall": {
+    "title": "ช้อปปิ้งมอลล์",
+    "totalItems": "จำนวนสินค้าทั้งหมด: {count} รายการ"
+  },
+  "section": {
+    "seeMore": "ดูเพิ่มเติม",
+    "recommended": "แนะนำ",
+    "category": "หมวดหมู่"
+  },
+  "auth": {
+    "signIn": "เข้าสู่ระบบ",
+    "signingIn": "กำลังเข้าสู่ระบบ...",
+    "register": "สมัครสมาชิก",
+    "email": "อีเมล",
+    "password": "รหัสผ่าน",
+    "emailPlaceholder": "you@example.com",
+    "passwordPlaceholder": "รหัสผ่าน"
+  },
+  "test": {
+    "loginTitle": "ทดสอบการเข้าสู่ระบบ",
+    "registerTest": "ทดสอบการลงทะเบียน",
+    "response": "การตอบกลับ",
+    "noResponse": "ยังไม่มีการตอบกลับ",
+    "createAccount": "สร้างบัญชี",
+    "creatingAccount": "กำลังสร้างบัญชี..."
+  },
+  "breadcrumb": {
+    "components": "คอมโพเนนต์",
+    "page": "breadcrumb"
+  },
+  "product": {
+    "addToCart": "เพิ่มลงตะกร้า",
+    "buyNow": "ซื้อทันที",
+    "quantity": "จำนวน"
   }
 }
