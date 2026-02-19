@@ -1,6 +1,9 @@
+import useTranslator from "@/hooks/useTranslator"
+
 const Register = () => {
+  const { t } = useTranslator()
   return (
-    <div>register</div>
+    <div>{t("auth.register")}</div>
   )
 }
 export default Register

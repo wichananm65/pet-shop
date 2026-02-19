@@ -7,9 +7,11 @@ import Link from "next/link"
 import Section from "./Section"
 import { Button } from "@/components/ui/button"
 import useRecommended from "@/hooks/product/useRecommended"
+import useTranslator from "@/hooks/useTranslator"
 
 const RecommendedSection = () => {
     const { products, loadMore, hasMore, loading } = useRecommended()
+    const { t } = useTranslator()
 
     const [maxCards, setMaxCards] = React.useState<number>(12)
 
@@ -34,7 +36,7 @@ const RecommendedSection = () => {
     const visible = products.slice(0, maxCards)
 
     return (
-        <Section name="Recommended" href="/products" grid="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" showMore={false}>
+        <Section name={t("section.recommended")} href="/products" grid="grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6" showMore={false}>
             {visible.map((p) => (
                 <Link key={p.productID} href={`/product/${p.productID}`} className="rounded-md overflow-hidden bg-white shadow-sm hover:shadow-md transition">
                     <div className="relative w-full aspect-4/3 bg-white">
@@ -75,7 +77,7 @@ const RecommendedSection = () => {
                         onClick={() => loadMore()}
                         disabled={!hasMore || loading}
                     >
-                        {`See more`}
+                        {t("section.seeMore")}
                     </Button>
                 </div>
             )}
