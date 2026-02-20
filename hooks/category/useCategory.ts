@@ -14,8 +14,9 @@ export default function useCategory(limit = 100) {
     try {
       const data = await listCategories(limit)
       setCategories(data)
-    } catch (err: any) {
-      setError(err?.message || String(err))
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err)
+      setError(msg)
     } finally {
       setLoading(false)
     }

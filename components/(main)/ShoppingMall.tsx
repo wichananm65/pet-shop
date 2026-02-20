@@ -1,22 +1,15 @@
 'use client'
 
+import React from "react"
 import { BreadCrumb } from "../common/BreadCrumb"
 import Section from "../common/Section/Section"
 import Image from "next/image"
 import Link from "next/link"
-import { Heart } from "lucide-react"
 import useShoppingMall from "@/hooks/shoppingMall/useShoppingMall"
 import useTranslator from "@/hooks/useTranslator"
+import FavoriteButton from "@/components/common/FavoriteButton"
+import Rating from "@/components/common/Rating"
 
-export function RatingDots({ score }: { score?: number | null }) {
-    return (
-        <div className="flex items-center gap-1 text-sm text-muted-foreground">
-            {Array.from({ length: 5 }).map((_, i) => (
-                <span key={i} className={"w-2 h-2 rounded-full " + (score && i < score ? "bg-orange-500" : "bg-gray-200")}></span>
-            ))}
-        </div>
-    )
-}
 
 const ShoppingMall = () => {
     const { items, loading } = useShoppingMall(100)
@@ -41,6 +34,7 @@ const ShoppingMall = () => {
                     seeMore={false}
                     grid="grid-cols-1 md:grid-cols-2 gap-6"
                 >
+                    {/* Local FavoriteButton component placed below for clarity */}
                     {loading && items.length === 0 ? (
                         Array.from({ length: 6 }).map((_, i) => (
                             <div key={i} className="rounded-md bg-gray-100 aspect-[4/1.2] overflow-hidden shadow-sm" />
@@ -53,15 +47,19 @@ const ShoppingMall = () => {
                                 </div>
 
                                 <div className="flex-1">
-                                    <div className="text-xs text-muted-foreground mb-1">{p.productNameTH ? p.productNameTH : p.productName}</div>
-                                    <div className="text-sm font-semibold truncate mb-2">{p.productName ?? p.productNameTH}</div>
+                                    <div className="flex items-start justify-between gap-3 mb-2">
+                                        <div className="min-w-0">
+                                            <div className="text-xs text-muted-foreground">{p.productNameTH ? p.productNameTH : p.productName}</div>
+                                            <div className="text-sm font-semibold truncate">{p.productName ?? p.productNameTH}</div>
+                                        </div>
+                                        <div className="shrink-0">
+                                            <FavoriteButton productId={p.productID} />
+                                        </div>
+                                    </div>
 
                                     <div className="mt-2 flex items-end justify-between gap-4">
                                         <div className="text-orange-600 font-semibold">{p.price ? `฿${p.price}` : ""}</div>
-                                        <div className="flex items-center gap-3">
-                                            <RatingDots score={p.score ?? 0} />
-                                            <div className="p-2 rounded-full bg-white"><Heart className="w-4 h-4 text-orange-400" /></div>
-                                        </div>
+                                        <Rating score={p.score ?? 0} size="sm" />
                                     </div>
                                 </div>
                             </Link>
@@ -72,4 +70,7 @@ const ShoppingMall = () => {
         </div>
     )
 }
+
+
+
 export default ShoppingMall

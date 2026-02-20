@@ -19,15 +19,24 @@ export default function useShoppingMall(limit = 100) {
 
   useEffect(() => {
     let mounted = true
-    setLoading(true)
-    listShoppingMall(limit)
-      .then((data) => {
+
+    const load = async () => {
+      setLoading(true)
+      setError(null)
+      try {
+        const data = await listShoppingMall(limit)
         if (!mounted) return
         const norm = data.map((it) => ({ ...it, productImg: normalizeUrl(it.productImg ?? undefined) }))
         setItems(norm)
-      })
-      .catch((err) => setError(err?.message || String(err)))
-      .finally(() => setLoading(false))
+      } catch (err: unknown) {
+        const msg = err instanceof Error ? err.message : String(err)
+        if (mounted) setError(msg)
+      } finally {
+        if (mounted) setLoading(false)
+      }
+    }
+
+    load()
     return () => {
       mounted = false
     }

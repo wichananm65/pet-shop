@@ -41,5 +41,11 @@
     "addToCart": "Add To Cart",
     "buyNow": "Buy Now",
     "quantity": "Quantity"
+  },
+  "favorite": {
+    "title": "Favorites",
+    "emptyTitle": "No favorites yet",
+    "empty": "You haven't added any favorite products.",
+    "browse": "Browse products"
   }
 }

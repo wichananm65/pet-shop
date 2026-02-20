@@ -25,6 +25,10 @@ export type LoginResponse = {
     phone?: string;
     gender?: string;
     avatarUrl?: string;
+    // favoriteProductId returned by backend (may be absent or null)
+    favoriteProductId?: number[];
+    // accept both keys for backward compatibility
+    favoriteProductIDs?: number[];
   };
 };
 

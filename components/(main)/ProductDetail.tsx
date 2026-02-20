@@ -4,11 +4,12 @@ import Image from "next/image"
 import { useState } from "react"
 import useProductById from "@/hooks/product/useProductById"
 import useTranslator from "@/hooks/useTranslator"
-import { RatingDots } from "@/components/(main)/ShoppingMall" // reuse RatingDots visual
+import FavoriteButton from "@/components/common/FavoriteButton"
 import { Button } from "@/components/ui/button"
 import Toast from "@/components/ui/Toast"
 import { BreadCrumb } from "@/components/common/BreadCrumb"
 import type { ProductV1Dto } from "@/server/service/product/product-service"
+import Rating from "../common/Rating"
 
 type Props = { id: number; initial?: ProductV1Dto | null }
 
@@ -67,15 +68,23 @@ export default function ProductDetail({ id, initial }: Props) {
                             <Image src={product.productImg ?? "/shopping/placeholder.svg"} alt={product.productName ?? product.productNameTH ?? `product-${product.productID}`} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
                         </div>
 
-                        <div className="md:col-span-2">
-                            <div className="text-xs text-muted-foreground mb-1">{product.productNameTH ?? product.productName}</div>
-                            <h1 className="text-2xl font-semibold mb-3">{product.productName ?? product.productNameTH}</h1>
+                        <div className="col-span-2">
+                            <div className="flex justify-between">
+                                <div>
+                                    <div className="text-xs text-muted-foreground mb-1">{product.productNameTH ?? product.productName}</div>
+                                    <h1 className="text-2xl font-semibold mb-3">{product.productName ?? product.productNameTH}</h1>
+                                </div>
+
+                                <FavoriteButton productId={product.productID} />
+                            </div>
+
 
                             <div className="flex items-center gap-4 mb-4">
                                 <div className="text-2xl text-orange-600 font-bold">{product.productPrice ? `฿${product.productPrice}` : ""}</div>
                                 <div className="text-sm text-muted-foreground">{product.category}</div>
-                                <div className="ml-auto">
-                                    <RatingDots score={product.score ?? 0} />
+                                <div className="ml-auto flex items-center gap-3">
+                                    <Rating score={product.score ?? 0} size="md"/>
+
                                 </div>
                             </div>
 

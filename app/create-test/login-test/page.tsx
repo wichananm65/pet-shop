@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { postJson } from "@/server/service/api";
+// Update the import path to the correct relative location or create the file if missing
+import { postJson } from "../../../server/service/api";
 import useTranslator from "@/hooks/useTranslator";
 
 type LoginResponse = {
@@ -14,6 +15,8 @@ type LoginResponse = {
     lastName: string;
     phone?: string;
     gender?: string;
+    favoriteProductId?: number[];
+    favoriteProductIDs?: number[];
   };
 };
 

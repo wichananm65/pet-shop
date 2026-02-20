@@ -1,5 +1,6 @@
 import ProductDetail from "@/components/(main)/ProductDetail"
 import { getProductV1, type ProductV1Dto } from "@/server/service/product/product-service"
+import { notFound } from "next/navigation"
 
 type Props = { params: { id: string } | Promise<{ id: string }> }
 
@@ -8,11 +9,15 @@ export default async function Page({ params }: Props) {
   const { id } = await params
   const numericId = Number(id)
 
+  // Immediately return 404 for non-numeric `id` segments so paths like
+  // `/product/favorite` aren't treated as a product detail page.
+  if (Number.isNaN(numericId)) {
+    notFound()
+  }
+
   let initial: ProductV1Dto | null = null
   try {
-    if (!Number.isNaN(numericId)) {
-      initial = await getProductV1(numericId)
-    }
+    initial = await getProductV1(numericId)
   } catch {
     // ignore — client will handle not-found / errors
   }

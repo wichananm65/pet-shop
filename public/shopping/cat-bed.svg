@@ -1,7 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="600" height="600" viewBox="0 0 600 600">
-  <rect width="100%" height="100%" fill="#FFF7ED" rx="16"/>
-  <g transform="translate(60,60)">
-    <rect width="480" height="300" rx="28" fill="#FEF3C7" stroke="#FDBA74" stroke-width="6"/>
-    <text x="240" y="170" font-size="28" font-family="Inter, Arial" text-anchor="middle" fill="#92400E">Cat Scratcher Bed</text>
-  </g>
-</svg>

@@ -2,6 +2,7 @@
 
 import React from "react"
 import Image from "next/image"
+import Link from "next/link"
 
 import Section from "./Section"
 import useShoppingMall from "@/hooks/shoppingMall/useShoppingMall"
@@ -23,17 +24,16 @@ const ShoppingMallSection = () => {
       ) : (
         visible.map((p) => (
           <div key={p.productID} className="flex items-center justify-center p-2">
-            <div className="w-full aspect-square overflow-hidden rounded-md bg-white shadow-sm">
+            <Link href={`/product/${p.productID}`} className="relative w-full aspect-square overflow-hidden rounded-md bg-white shadow-sm hover:shadow-md transition">
               <Image
                 src={p.productImg ?? "/shopping/placeholder.svg"}
-                alt={`product-${p.productID}`}
-                width={400}
-                height={400}
-                className="w-full h-full object-cover"
-                style={{ objectFit: "cover" }}
+                alt={p.productName ?? p.productNameTH ?? `product-${p.productID}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 50vw, 25vw"
                 priority
               />
-            </div>
+            </Link>
           </div>
         ))
       )}

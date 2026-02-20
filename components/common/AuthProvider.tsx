@@ -9,6 +9,9 @@ type User = {
   firstName?: string
   lastName?: string
   avatarUrl?: string
+  favoriteProductId?: number[]
+  // accept both keys for compatibility with backend
+  favoriteProductIDs?: number[]
 }
 
 type AuthContextType = {
