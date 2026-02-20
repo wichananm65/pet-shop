@@ -14,8 +14,9 @@ export default function useBanner(limit = 10) {
     try {
       const data = await listBanners(limit)
       setBanners(data)
-    } catch (err: any) {
-      setError(err?.message || String(err))
+    } catch (err: unknown) {
+      const msg = err instanceof Error ? err.message : String(err)
+      setError(msg)
     } finally {
       setLoading(false)
     }

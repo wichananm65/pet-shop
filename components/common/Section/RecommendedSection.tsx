@@ -8,6 +8,8 @@ import Section from "./Section"
 import { Button } from "@/components/ui/button"
 import useRecommended from "@/hooks/product/useRecommended"
 import useTranslator from "@/hooks/useTranslator"
+import FavoriteButton from "@/components/common/FavoriteButton"
+import Rating from "@/components/common/Rating"
 
 const RecommendedSection = () => {
     const { products, loadMore, hasMore, loading } = useRecommended()
@@ -53,14 +55,18 @@ const RecommendedSection = () => {
                     </div>
 
                     <div className="p-3">
-                        <div className="text-xs text-muted-foreground mb-1">{p.productNameTH ? p.productNameTH : p.productName}</div>
-                        <div className="text-sm font-semibold truncate">{p.productName ?? p.productNameTH}</div>
+                        <div className="flex justify-between">
+                            <div>
+                                <div className="text-xs text-muted-foreground mb-1">{p.productNameTH ? p.productNameTH : p.productName}</div>
+                                <div className="text-sm font-semibold truncate">{p.productName ?? p.productNameTH}</div>
+                            </div>
+                            <FavoriteButton productId={p.productID} />
+                        </div>
+
                         <div className="mt-3 flex items-center justify-between">
                             <div className="text-orange-600 font-semibold">{p.productPrice ? `฿${p.productPrice}` : ""}</div>
-                            <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                                {Array.from({ length: 5 }).map((_, i) => (
-                                    <span key={i} className={"w-2 h-2 rounded-full " + (p.score && i < p.score ? "bg-orange-500" : "bg-gray-200")} />
-                                ))}
+                            <div className="flex items-center gap-2">
+                                <Rating score={p.score ?? 0} size="sm"/>
                             </div>
                         </div>
                     </div>
