@@ -10,6 +10,7 @@ export type ProfileDto = {
   avatarPic?: string | null
   favoriteProductId?: number | null
   favoriteProductIDs?: number[] | null
+  mainAddressId?: number | null
 }
 
 function authHeaders(): Record<string, string> {
@@ -31,4 +32,23 @@ export async function getProfile(): Promise<ProfileDto> {
   }
 
   return (await res.json()) as ProfileDto
+}
+
+export async function updateProfile(data: Partial<ProfileDto>): Promise<ProfileDto> {
+  const url = API_BASE_URL ? `${API_BASE_URL}/api/v1/profile` : "/api/v1/profile"
+  const res = await fetch(url, {
+    method: "PATCH",
+    headers: { "Content-Type": "application/json", ...authHeaders() },
+    body: JSON.stringify(data),
+  })
+  if (!res.ok) {
+    const text = await res.text().catch(() => res.statusText)
+    throw { status: res.status, message: text || res.statusText }
+  }
+  const body = await res.json()
+  // depending on response wrapper (avatarPic/user) we might unwrap
+  if (body.user) {
+    return body.user as ProfileDto
+  }
+  return body as ProfileDto
 }

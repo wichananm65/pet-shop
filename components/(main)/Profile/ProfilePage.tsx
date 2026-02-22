@@ -7,6 +7,9 @@ import useTranslator from "@/hooks/useTranslator"
 import useProfile from "@/hooks/user/useProfile"
 import { useAuth } from "@/components/common/AuthProvider"
 import AvatarUploader from "./AvatarUploader"
+import AddressCard from "@/components/(main)/Address/AddressCard"
+import useAddresses from "@/hooks/address/useAddresses"
+
 import { useRouter } from "next/navigation"
 import ConfirmLeaveModal from "@/components/common/ConfirmLeaveModal"
 import { Button } from "@/components/ui/button"
@@ -18,6 +21,7 @@ const ProfilePage = () => {
     const { t } = useTranslator()
     const { profile, loading, error, reload } = useProfile()
     const { token, user, login } = useAuth()
+    const { addresses } = useAddresses()
     const router = useRouter()
 
     const [firstName, setFirstName] = useState("")
@@ -148,6 +152,22 @@ const ProfilePage = () => {
                             </div>
                         </div>
                     </div>
+                    {/* show main address if available */}
+                    {profile?.mainAddressId && addresses && (
+                        (() => {
+                            const main = addresses.find(a => a.addressId === profile.mainAddressId)
+                            return main ? (
+                                <div className="mb-6">
+                                    <h2 className="text-xl font-semibold mb-2">{t("address.header")}</h2>
+                                    <AddressCard
+                                        address={main}
+                                        isMain
+                                        onEdit={() => router.push("/address")}
+                                    />
+                                </div>
+                            ) : null
+                        })()
+                    )}
                     <h2 className="text-xl font-semibold mb-4">{t("profile.account")}</h2>
 
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-4">
@@ -279,6 +299,7 @@ const ProfilePage = () => {
                                             phone: data.phone,
                                             gender: data.gender,
                                             avatarPic: data.avatarPic,
+                                            mainAddressId: data.mainAddressId ?? user.mainAddressId,
                                         })
                                     }
 

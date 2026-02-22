@@ -26,9 +26,15 @@ export default function useAddresses() {
 
   useEffect(() => {
     load()
+    // also poll every 15 seconds to keep list in sync with server
+    const interval = setInterval(() => {
+      load().catch(() => {})
+    }, 15000)
+    return () => clearInterval(interval)
   }, [load])
 
   const reload = useCallback(() => {
+    // forces a fresh fetch; cancel any ongoing polling
     load()
   }, [load])
 

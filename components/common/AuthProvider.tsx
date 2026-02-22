@@ -14,6 +14,7 @@ type User = {
   favoriteProductId?: number[]
   // accept both keys for compatibility with backend
   favoriteProductIDs?: number[]
+  mainAddressId?: number | null
   cartProductId?: number[]
   cartProductIDs?: number[]
   // map of productID to quantity
