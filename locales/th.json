@@ -90,6 +90,22 @@
     "myAddresses": "ที่อยู่ของฉัน",
     "addAddress": "เพิ่มที่อยู่",
     "empty": "คุณยังไม่มีที่อยู่ที่บันทึกไว้",
-    "edit": "แก้ไข"
+    "edit": "แก้ไข",
+    "delete": "ลบ",
+    "promptDesc": "กรุณาใส่รายละเอียดที่อยู่",
+    "promptPhone": "กรุณาใส่หมายเลขโทรศัพท์",
+    "promptName": "กรุณาใส่ชื่อผู้รับ",
+    "confirmDelete": "คุณแน่ใจหรือไม่ว่าต้องการลบที่อยู่นี้?",
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "phonePlaceholder": "หมายเลขโทรศัพท์",
+    "addressPlaceholder": "ที่อยู่",
+    "mainAddress": "ที่อยู่หลัก",
+    "setAsMain": "ตั้งเป็นที่อยู่หลัก"
+  },
+  "warningModal": {
+    "message": "คุณแน่ใจที่จะลบที่อยู่\nใช่หรือไม่",
+    "confirm": "ตกลง",
+    "cancel": "ยกเลิก"
   }
 }

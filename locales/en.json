@@ -86,12 +86,28 @@
     "total": "Total"
   },
   "address": {
-    "title": "Addresses",
+    "title": "Address",
     "header": "My Addresses",
     "subtitle": "Manage your shipping locations",
     "myAddresses": "My Addresses",
     "addAddress": "Add Address",
     "empty": "You have no saved addresses.",
-    "edit": "Edit"
+    "edit": "Edit",
+    "delete": "Delete",
+    "promptDesc": "Enter address description",
+    "promptPhone": "Enter phone number",
+    "promptName": "Enter recipient name",
+    "confirmDelete": "Are you sure you want to delete this address?",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "phonePlaceholder": "Phone number",
+    "addressPlaceholder": "Address details",
+    "mainAddress": "Main address",
+    "setAsMain": "Set as main"
+  },
+  "warningModal": {
+    "message": "Are you sure\nyou want to delete this address?",
+    "confirm": "Delete",
+    "cancel": "Cancel"
   }
 }
