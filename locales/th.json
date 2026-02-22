@@ -4,9 +4,29 @@
     "recent_orders": "การสั่งซื้อล่าสุด",
     "saved_addresses": "ที่อยู่ที่บันทึกไว้",
     "change_language": "เปลี่ยนภาษา",
-    "logout": "ออกจากระบบ"
+    "logout": "ออกจากระบบ",
+    "firstName": "ชื่อ",
+    "lastName": "นามสกุล",
+    "phone": "หมายเลขโทรศัพท์",
+    "email": "อีเมล",
+    "gender": "เพศ",
+    "male": "ชาย",
+    "female": "หญิง",
+    "other": "อื่นๆ",
+    "firstNamePlaceholder": "กรอกชื่อ",
+    "lastNamePlaceholder": "กรอกนามสกุล",
+    "phonePlaceholder": "กรอกหมายเลขโทรศัพท์",
+    "save": "บันทึก",
+    "noImage": "ไม่มีรูป",
+    "chooseImage": "เลือกรูป",
+    "removeImage": "ลบรูป"
   },
   "home": "หน้าหลัก",
+  "confirmLeaveModal": {
+    "unsavedWarning": "มีการแก้ไขข้อมูล \nคุณแน่ใจหรือไม่ว่าต้องการออกจากหน้านี้?",
+    "confirm": "ตกลง",
+    "cancel": "ยกเลิก"
+  },
   "shoppingMall": {
     "title": "ช้อปปิ้งมอลล์",
     "totalItems": "จำนวนสินค้าทั้งหมด: {count} รายการ"

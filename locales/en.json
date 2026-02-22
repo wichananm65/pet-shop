@@ -1,12 +1,32 @@
 {
   "profile": {
-    "account": "Account",
+    "account": "Profile",
     "recent_orders": "Recent Orders",
     "saved_addresses": "Saved Addresses",
     "change_language": "Change Language",
-    "logout": "Logout"
+    "logout": "Logout",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "phone": "Phone Number",
+    "email": "Email",
+    "gender": "Gender",
+    "male": "Male",
+    "female": "Female",
+    "other": "Other",
+    "firstNamePlaceholder": "Enter your first name",
+    "lastNamePlaceholder": "Enter your last name",
+    "phonePlaceholder": "Enter your phone number",
+    "save": "Save",
+    "noImage": "No Image",
+    "chooseImage": "Choose Image",
+    "removeImage": "Remove Image"
   },
   "home": "Home",
+  "confirmLeaveModal": {
+    "unsavedWarning": "You have unsaved changes.\nAre you sure you want to leave this page?",
+    "confirm": "Confirm",
+    "cancel": "Cancel"
+  },
   "shoppingMall": {
     "title": "Shopping Mall",
     "totalItems": "Total number of products: {count} items"

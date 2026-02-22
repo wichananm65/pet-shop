@@ -9,7 +9,7 @@ type AuthUserWithFavorites = {
   email: string
   firstName?: string
   lastName?: string
-  avatarUrl?: string
+  avatarPic?: string
   favoriteProductId?: number[]
   favoriteProductIDs?: number[]
 }

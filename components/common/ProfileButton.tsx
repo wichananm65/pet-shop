@@ -15,15 +15,20 @@ import {
 import useTranslator from "@/hooks/useTranslator"
 import { useAuth } from "@/components/common/AuthProvider"
 import { useRouter } from "next/navigation"
-import Image from 'next/image'
+import Image from "next/image"
 import { LanguageSwitch } from "./LanguageSwitch"
 import { CircleUserRound } from 'lucide-react';
+
 
 
 export default function ProfileButton() {
     const { t, lang, setLang } = useTranslator()
     const { logout, user } = useAuth()
     const router = useRouter()
+
+    // no special mount guard needed anymore - auth provider now starts with
+    // null user on both server and client and populates itself in an effect.
+    // that keeps the rendered output consistent until auth state is hydrated.
 
     const handleLogout = () => {
         try {
@@ -36,26 +41,33 @@ export default function ProfileButton() {
         <DropdownMenu>
             <DropdownMenuTrigger asChild>
                 <Button variant="ghost" className="rounded-full w-16 h-16 overflow-hidden">
-                  {user?.avatarUrl ? (
-                    <Image
-                      src={user.avatarUrl}
-                      alt={`${user.firstName ?? user.email ?? 'User'}'s avatar`}
-                      width={64}
-                      height={64}
-                      className="object-cover w-full h-full rounded-full"
-                      priority={false}
-                    />
-                  ) : (
-                    <CircleUserRound className="size-10 w-full h-full" color="white" />
-                  )}
+                    {user?.avatarPic ? (
+                        <Image
+                            src={user.avatarPic}
+                            alt={`${user.firstName ?? user.email ?? 'User'}'s avatar`}
+                            className="object-cover w-full h-full rounded-full"
+                            width={64}
+                            height={64}
+                        />
+                    ) : (
+                        <CircleUserRound className="size-10 w-full h-full" color="white" />
+                    )}
                 </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end">
                 <DropdownMenuGroup>
                     <div className="flex justify-between mx-2 my-4">
-                        <div>
-                            <CircleUserRound size={48} color="orange" />
-                        </div>
+                        {user?.avatarPic ? (
+                            <Image
+                                src={user.avatarPic}
+                                alt={`${user.firstName ?? user.email ?? 'User'}'s avatar`}
+                                className="object-cover w-full h-full rounded-full"
+                                width={64}
+                                height={64}
+                            />
+                        ) : (
+                            <CircleUserRound className="size-10 w-full h-full" color="white" />
+                        )}
                         <div className="w-full ml-4 mt-3">
                             {user ? `${user.firstName ?? ""} ${user.lastName ?? ""}`.trim() || user.email : t("profile.account")}
                         </div>
@@ -65,7 +77,9 @@ export default function ProfileButton() {
 
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
-                        {t("profile.account")}
+                        <button onClick={() => router.push("/profile")}>
+                            {t("profile.account")}
+                        </button>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
                         {t("profile.recent_orders")}
