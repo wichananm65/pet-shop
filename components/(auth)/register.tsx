@@ -1,3 +1,5 @@
+"use client"
+
 import useTranslator from "@/hooks/useTranslator"
 
 const Register = () => {

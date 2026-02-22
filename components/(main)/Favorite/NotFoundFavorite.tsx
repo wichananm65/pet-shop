@@ -1,3 +1,5 @@
+"use client"
+
 import useTranslator from "@/hooks/useTranslator"
 import Link from "next/link"
 

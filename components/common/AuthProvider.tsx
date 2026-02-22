@@ -8,7 +8,9 @@ type User = {
   email: string
   firstName?: string
   lastName?: string
-  avatarUrl?: string
+  phone?: string
+  gender?: string
+  avatarPic?: string
   favoriteProductId?: number[]
   // accept both keys for compatibility with backend
   favoriteProductIDs?: number[]
@@ -25,16 +27,19 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined)
 
 export function AuthProvider({ children }: { children: React.ReactNode }) {
-  const [token, setToken] = useState<string | null>(() => getAuthToken())
-  const [user, setUser] = useState<User | null>(() => {
+  // start with null on both server and client; read from storage after
+  // mounting to avoid hydration mismatches when localStorage contains a
+  // previously saved auth state.
+  const [token, setToken] = useState<string | null>(null)
+  const [user, setUser] = useState<User | null>(null)
+
+  React.useEffect(() => {
+    setToken(getAuthToken())
     try {
       const raw = localStorage.getItem("authUser")
-      if (raw) return JSON.parse(raw)
+      if (raw) setUser(JSON.parse(raw))
     } catch {}
-    return null
-  })
-
-  // Remove the effect since initialization is handled in useState
+  }, [])
 
   const login = (t: string, u: User | null = null) => {
     try {

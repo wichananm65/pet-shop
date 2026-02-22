@@ -24,7 +24,7 @@ export type LoginResponse = {
     lastName: string;
     phone?: string;
     gender?: string;
-    avatarUrl?: string;
+    avatarPic?: string;
     // favoriteProductId returned by backend (may be absent or null)
     favoriteProductId?: number[];
     // accept both keys for backward compatibility

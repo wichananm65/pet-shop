@@ -10,9 +10,9 @@ export default function NavBar() {
                 <Image src="/logo.png" alt="Pet Shop Logo" width={144} height={40} className="w-36" priority />
             </Link>
             <div className="flex items-center space-x-4">
-                <button className="text-white hover:text-orange-100 transition-colors">
+                <Link href="/" className="text-white hover:text-orange-100 transition-colors">
                     <Home size={24} />
-                </button>
+                </Link>
                 <button className="text-white hover:text-orange-100 transition-colors">
                     <Bell size={24} />
                 </button>
