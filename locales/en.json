@@ -19,7 +19,10 @@
     "save": "Save",
     "noImage": "No Image",
     "chooseImage": "Choose Image",
-    "removeImage": "Remove Image"
+    "removeImage": "Remove Image",
+    "infoTitle": "My Information",
+    "infoSubtitle": "Manage your personal data to keep your account secure",
+    "myProfile": "My Profile"
   },
   "home": "Home",
   "confirmLeaveModal": {
@@ -59,6 +62,11 @@
   },
   "product": {
     "addToCart": "Add To Cart",
+    "cart.title": "Cart",
+    "cart.empty": "Your cart is empty",
+    "cart.selectAll": "Select all",
+    "cart.shop": "Shop",
+    "cart.total": "Total",
     "buyNow": "Buy Now",
     "quantity": "Quantity"
   },
@@ -67,5 +75,23 @@
     "emptyTitle": "No favorites yet",
     "empty": "You haven't added any favorite products.",
     "browse": "Browse products"
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "selectAll": "Select all",
+    "shop": "Shop",
+    "unitPrice": "Price",
+    "quantity": "Qty",
+    "total": "Total"
+  },
+  "address": {
+    "title": "Addresses",
+    "header": "My Addresses",
+    "subtitle": "Manage your shipping locations",
+    "myAddresses": "My Addresses",
+    "addAddress": "Add Address",
+    "empty": "You have no saved addresses.",
+    "edit": "Edit"
   }
 }
