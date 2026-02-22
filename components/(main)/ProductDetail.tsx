@@ -11,6 +11,9 @@ import { BreadCrumb } from "@/components/common/BreadCrumb"
 import type { ProductV1Dto } from "@/server/service/product/product-service"
 import Rating from "../common/Rating"
 
+import { addToCart as apiAddToCart } from "@/server/service/cart/cart-service"
+import useCart from "@/hooks/cart/useCart"
+
 type Props = { id: number; initial?: ProductV1Dto | null }
 
 export default function ProductDetail({ id, initial }: Props) {
@@ -46,12 +49,20 @@ export default function ProductDetail({ id, initial }: Props) {
     ]
 
 
-    const addToCart = () => {
-        // placeholder — cart not implemented yet
-        showToast(`${t("product.addToCart")} — ${product.productName} × ${qty}`, "success")
+    const { reload } = useCart()
+
+    const addToCart = async () => {
+        try {
+            await apiAddToCart(product.productID, qty)
+            await reload()
+            showToast(`${t("product.addToCart")} — ${product.productName} × ${qty}`, "success")
+        } catch (err: unknown) {
+            const msg = err instanceof Error ? err.message : String(err)
+            showToast(msg, "error")
+        }
     }
     const buyNow = () => {
-        // placeholder
+        // still a placeholder / could open cart or checkout flow later
         showToast(`${t("product.buyNow")} — ${product.productName} × ${qty}`, "success")
     }
 

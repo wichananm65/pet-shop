@@ -85,7 +85,9 @@ export default function ProfileButton() {
                         {t("profile.recent_orders")}
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        {t("profile.saved_addresses")}
+                        <button onClick={() => router.push("/address")}>
+                            {t("profile.saved_addresses")}
+                        </button>
                     </DropdownMenuItem>
                     <div className="flex justify-between">
                         <Button onClick={() => setLang(lang === "en" ? "th" : "en")}>

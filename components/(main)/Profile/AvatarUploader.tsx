@@ -3,6 +3,7 @@
 import React, { useRef } from "react"
 import Image from "next/image"
 import useTranslator from "@/hooks/useTranslator"
+import { Button } from "@/components/ui/button"
 
 interface Props {
   profilePic?: string | null
@@ -50,21 +51,20 @@ export default function AvatarUploader({ profilePic, previewUrl, onFileSelected,
       )}
 
       <div className="flex gap-2 mb-4">
-        <button
-          type="button"
-          className="text-sm text-orange-500 border border-orange-500 rounded px-2 py-1"
+        <Button
+          className="text-sm text-orange-500 border border-orange-500 rounded px-2 py-1 hover:cursor-pointer
+          "
           onClick={() => fileInputRef.current?.click()}
         >
           {t("profile.chooseImage") || "เลือกรูป"}
-        </button>
+        </Button>
         {profilePic && (
-          <button
-            type="button"
-            className="text-sm text-red-500 border border-red-500 rounded px-2 py-1"
+          <Button
+            className="text-sm text-red-500 border border-red-500 rounded px-2 py-1 hover:cursor-pointer"
             onClick={requestRemove}
           >
             {t("profile.removeImage") || "ลบรูป"}
-          </button>
+          </Button>
         )}
       </div>
 

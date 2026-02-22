@@ -42,6 +42,19 @@
     --sidebar-ring: 24.6 95% 53.1%;
   }
 
+  button {
+    cursor: pointer;
+  }
+  button:disabled {
+    cursor: not-allowed;
+  }
+
+  /* radio inputs should show orange when selected */
+  input[type="radio"]:checked {
+    border-color: #f97316; /* Tailwind's orange-500 */
+    background-color: #f97316; /* Tailwind's orange-500 */
+  }
+
   .dark {
     --radius: 0.65rem;
     --background: 20 14.3% 4.1%;
