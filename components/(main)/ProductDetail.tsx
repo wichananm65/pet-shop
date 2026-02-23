@@ -2,10 +2,12 @@
 
 import Image from "next/image"
 import { useState } from "react"
+import { useRouter } from "next/navigation"
 import useProductById from "@/hooks/product/useProductById"
 import useTranslator from "@/hooks/useTranslator"
 import FavoriteButton from "@/components/common/FavoriteButton"
 import { Button } from "@/components/ui/button"
+import BuyNowButton from "@/components/common/BuyNowButton"
 import Toast from "@/components/ui/Toast"
 import { BreadCrumb } from "@/components/common/BreadCrumb"
 import type { ProductV1Dto } from "@/server/service/product/product-service"
@@ -19,6 +21,7 @@ type Props = { id: number; initial?: ProductV1Dto | null }
 export default function ProductDetail({ id, initial }: Props) {
     const { product, loading, error } = useProductById(id, initial)
     const { t, lang } = useTranslator()
+    const router = useRouter()
     const [qty, setQty] = useState(1)
     const [toast, setToast] = useState<{ message: string; type?: "error" | "success" } | null>(null)
 
@@ -62,8 +65,8 @@ export default function ProductDetail({ id, initial }: Props) {
         }
     }
     const buyNow = () => {
-        // still a placeholder / could open cart or checkout flow later
-        showToast(`${t("product.buyNow")} — ${product.productName} × ${qty}`, "success")
+        // navigate to buy-now screen (quantity handled server-side)
+        router.push("/cart/buy-now-screen")
     }
 
     return (
@@ -122,7 +125,7 @@ export default function ProductDetail({ id, initial }: Props) {
 
                         <div className="flex items-center gap-3">
                             <Button variant="outline" onClick={addToCart} size="lg">{t("product.addToCart")}</Button>
-                            <Button onClick={buyNow} size="lg">{t("product.buyNow")}</Button>
+                            <BuyNowButton onClick={buyNow} size="lg">{t("product.buyNow")}</BuyNowButton>
                         </div>
                     </div>
                 </div>

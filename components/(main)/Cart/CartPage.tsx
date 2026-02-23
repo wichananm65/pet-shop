@@ -6,7 +6,7 @@ import useTranslator from "@/hooks/useTranslator"
 import Image from "next/image"
 import Link from "next/link"
 import { ShoppingCart } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import BuyNowButton from "@/components/common/BuyNowButton"
 
 import { OrangeCheckbox } from "@/components/common/Checkbox"
 import useIncreaseQuantity from "@/hooks/cart/useIncreaseQuantity"
@@ -186,9 +186,9 @@ export default function CartPage() {
                                 <span className="text-2xl font-bold text-orange-600">฿{total}</span>
                             </div>
 
-                            <Button variant="normal" size="lg" className="w-full">
+                            <BuyNowButton variant="normal" size="lg" className="w-full">
                                 {t("product.buyNow") || "Buy Now"}
-                            </Button>
+                            </BuyNowButton>
                         </div>
 
 

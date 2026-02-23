@@ -88,3 +88,13 @@ export async function getCart(): Promise<CartItemDto[]> {
   }
   return (await res.json()) as CartItemDto[]
 }
+
+export async function clearCart(): Promise<void> {
+  const url = API_BASE_URL ? `${API_BASE_URL}/api/v1/cart` : "/api/v1/cart"
+  const res = await fetch(url, { method: "DELETE", headers: { ...authHeaders() } })
+  if (!res.ok && res.status !== 204) {
+    const text = await res.text().catch(() => res.statusText)
+    throw { status: res.status, message: text || res.statusText }
+  }
+  notifyCartChange()
+}
