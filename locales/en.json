@@ -70,6 +70,37 @@
     "buyNow": "Buy Now",
     "quantity": "Quantity"
   },
+  "categoryPage": {
+    "items": "{count} items",
+    "page": "Page {page} / {total}"
+  },
+  "category": {
+    "all": "All Categories"
+  },
+  "buyNowScreen": {
+    "title": "Checkout",
+    "addressSection": "Shipping Address",
+    "paymentSection": "Payment Method",
+    "paymentSelect" : "Select Payment Method",
+    "cod": "Cash on Delivery",
+    "bankTransfer": "Bank Transfer",
+    "qrCode": "QR Code",
+    "addPaymentMethod": "Add Payment Method",
+    "items": "Items",
+    "itemsCount": "Items: {count}",
+    "order": "",
+    "orderLabel": "Order Total",
+    "shipping": "Shipping",
+    "total": "Total",
+    "agreeTerms": "I have read and agree to the refund and return policy ",
+    "termsLink": "terms and conditions",
+    "agreementText": "By placing an order, you agree to our terms of service and privacy policy. Please read carefully before proceeding.",
+    "paymentInfo": "Payment Information",
+    "editAddress": "Edit Address"
+  },
+  "order": {
+    "confirmMessage": "Are you sure you want to place this order?"
+  },
   "favorite": {
     "title": "Favorites",
     "emptyTitle": "No favorites yet",
@@ -109,5 +140,9 @@
     "message": "Are you sure\nyou want to delete this address?",
     "confirm": "Delete",
     "cancel": "Cancel"
+  },
+  "successModal": {
+    "message": "Your order has been placed successfully!",
+    "button": "Close"
   }
 }

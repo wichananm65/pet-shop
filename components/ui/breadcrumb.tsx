@@ -15,7 +15,7 @@ function BreadcrumbList({ size = "md", className, ...props }: React.ComponentPro
     <ol
       data-slot="breadcrumb-list"
       className={cn(
-        "text-muted-foreground flex flex-wrap items-center gap-1.5 break-words sm:gap-2.5",
+        "text-muted-foreground flex flex-wrap items-center gap-1.5 wrap-break-word sm:gap-2.5",
         sizeClass,
         className
       )}

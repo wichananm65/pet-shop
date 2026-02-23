@@ -19,6 +19,7 @@ export async function listProducts(): Promise<ProductDto[]> {
   return (await res.json()) as ProductDto[]
 }
 
+
 export type ShoppingMallItem = {
   productId: number
   productPic?: string | null
