@@ -290,7 +290,7 @@ const handleOrder = async () => {
             open={successOpen}
             onClose={() => {
                 setSuccessOpen(false)
-                router.push("/orders")
+                router.push("/latest-order")
             }}
         />
         </div>

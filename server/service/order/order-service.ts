@@ -1,9 +1,12 @@
 import { API_BASE_URL } from "../api"
+import type { ProductV1Dto } from "../product/product-service"
 
 export type OrderDto = {
   orderID: number
   userID: number
   cart: Record<string, number>
+  // additional product info fetched by server based on product IDs
+  cartProducts?: Record<string, ProductV1Dto>
   quantity: number
   totalPrice: number
   shippingPrice: number
@@ -68,4 +71,14 @@ export async function createOrder(
     body: JSON.stringify({ cart, quantity, totalPrice, shippingPrice, grandPrice }),
   })
   return handleJsonResponse<OrderDto>(res)
+}
+
+export async function getOrders(): Promise<OrderDto[]> {
+  const url = API_BASE_URL ? `${API_BASE_URL}/api/v1/orders` : "/api/v1/orders"
+  const res = await fetch(url, {
+    headers: {
+      ...authHeaders(),
+    },
+  })
+  return handleJsonResponse<OrderDto[]>(res)
 }
