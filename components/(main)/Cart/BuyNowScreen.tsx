@@ -69,10 +69,10 @@ const BuyNowScreen = () => {
 
 const handleOrder = async () => {
     try {
+      // Build cart map { "productID": quantity } as required by the backend
       const cartMap: Record<string, number> = {}
-      items.forEach((it) => {
-        cartMap[String(it.productID)] = it.quantity
-      })
+      items.forEach((it) => { cartMap[String(it.productID)] = it.quantity })
+
       const data = await createOrder(
         cartMap,
         itemCount,

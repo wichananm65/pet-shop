@@ -32,7 +32,7 @@ export async function listShoppingMall(): Promise<ShoppingMallItem[]> {
   return (await res.json()) as ShoppingMallItem[]
 }
 
-// --- API v1 product detail (backend returns `productID`, `productName`, `productNameTH`, `productPrice`, `productImg`, `productDesc`, `productDescTH`, `score`, `category`) ---
+// --- API v1 product detail (backend returns camelCase field names) ---
 export type ProductV1Dto = {
   productID: number
   productName?: string | null

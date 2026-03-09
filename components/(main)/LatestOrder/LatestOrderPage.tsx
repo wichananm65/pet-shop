@@ -73,14 +73,11 @@ const LatestOrderPage = () => {
                                 <div className="mt-4">
                                     <strong>{t("order.items") || "Items"}:</strong>
                                     <div className="pl-5 mt-1">
-                                        {Object.entries(ord.cart).map(([pid, qty]) => {
-                                            const prod = ord.cartProducts ? ord.cartProducts[pid] : undefined
-                                            return (
-                                                <div key={pid} className="text-sm">
-                                                    {prod?.productName || pid} &times; {qty}
-                                                </div>
-                                            )
-                                        })}
+                                        {ord.cartItems?.map((item) => (
+                                            <div key={item.productID} className="text-sm">
+                                                {item.productName || item.productNameTH || `Product ${item.productID}`} &times; {item.quantity}
+                                            </div>
+                                        )) || <div className="text-sm text-muted">No items</div>}
                                     </div>
                                 </div>
                             </div>
@@ -115,14 +112,11 @@ const LatestOrderPage = () => {
                                             {t("order.items") || "Items"}
                                         </div>
                                         <span className="list-disc pl-6 space-y-1">
-                                            {Object.entries(ord.cart).map(([pid, qty]) => {
-                                                const prod = ord.cartProducts ? ord.cartProducts[pid] : undefined
-                                                return (
-                                                    <span key={pid} className="text-sm text-gray-600">
-                                                        {prod?.productName || pid} &times; {qty}
-                                                    </span>
-                                                )
-                                            })}
+                                            {ord.cartItems?.map((item) => (
+                                                <span key={item.productID} className="text-sm text-gray-600">
+                                                    {item.productName || item.productNameTH || `Product ${item.productID}`} &times; {item.quantity}
+                                                </span>
+                                            )) || <span className="text-sm text-gray-600">No items</span>}
                                         </span>
                                     </div>
                                 </div>

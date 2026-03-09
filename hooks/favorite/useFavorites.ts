@@ -22,7 +22,6 @@ export default function useFavorites() {
 
   // derived, statically-checkable dependencies for the effect
   const userId = user?.userId ?? null
-  const favsKey = user ? (user.favoriteProductId ?? user.favoriteProductIDs ?? []).join(",") : ""
 
   useEffect(() => {
     let mounted = true
@@ -56,8 +55,8 @@ export default function useFavorites() {
     return () => {
       mounted = false
     }
-    // rerun when user id or favorite arrays change
-  }, [userId, favsKey])
+    // rerun when user id changes
+  }, [userId])
 
   // expose reload that also updates local state
   const reload = async () => {

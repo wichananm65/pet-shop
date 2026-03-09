@@ -28,6 +28,11 @@ const nextConfig: NextConfig = {
         source: "/uploads/:path*",
         destination: `${backendUrl}/uploads/:path*`,
       },
+      // proxy legacy /products/* paths (stored without /uploads prefix in DB)
+      {
+        source: "/products/:path*",
+        destination: `${backendUrl}/uploads/products/:path*`,
+      },
     ];
   },
 };

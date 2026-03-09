@@ -25,10 +25,7 @@ export default function useDeleteFavorite() {
       setError(null)
       try {
         const res = await removeFavoriteApi(productId)
-        try {
-          const updatedUser = user ? ({ ...(user as unknown as AuthUserWithFavorites), favoriteProductId: res.favoriteProductId } as AuthUserWithFavorites) : null
-          login(token ?? "", updatedUser)
-        } catch {}
+        // favorites are now handled separately, no need to update user object
         return res
       } catch (err: unknown) {
         const msg = err instanceof Error ? err.message : String(err)
