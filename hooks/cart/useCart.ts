@@ -21,7 +21,6 @@ export default function useCart() {
   const { user } = useAuth()
 
   const userId = user?.userId ?? null
-  const cartKey = user ? (user.cart ? Object.keys(user.cart).sort().join(",") : (user.cartProductId ?? user.cartProductIDs ?? []).join(",")) : ""
 
   useEffect(() => {
     let mounted = true
@@ -60,7 +59,7 @@ export default function useCart() {
       mounted = false
       unsub()
     }
-  }, [userId, cartKey])
+  }, [userId])
 
   const reload = async () => {
     const data = await getCart()

@@ -24,6 +24,7 @@ export default function ProductDetail({ id, initial }: Props) {
     const router = useRouter()
     const [qty, setQty] = useState(1)
     const [toast, setToast] = useState<{ message: string; type?: "error" | "success" } | null>(null)
+    const { reload } = useCart()
 
 
     if (loading && !product) {
@@ -50,9 +51,6 @@ export default function ProductDetail({ id, initial }: Props) {
         ...(product.category ? [{ label: product.category, href: `/category/${product.category}` }] : []),
         { label: displayName || product.productName || `#${product.productID}`, current: true },
     ]
-
-
-    const { reload } = useCart()
 
     const addToCart = async () => {
         try {
@@ -125,7 +123,7 @@ export default function ProductDetail({ id, initial }: Props) {
 
                         <div className="flex items-center gap-3">
                             <Button variant="outline" onClick={addToCart} size="lg">{t("product.addToCart")}</Button>
-                            <BuyNowButton onClick={buyNow} size="lg">{t("product.buyNow")}</BuyNowButton>
+                            <BuyNowButton variant="normal" onClick={buyNow} size="lg">{t("product.buyNow")}</BuyNowButton>
                         </div>
                     </div>
                 </div>

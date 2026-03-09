@@ -99,7 +99,14 @@
     "editAddress": "Edit Address"
   },
   "order": {
-    "confirmMessage": "Are you sure you want to place this order?"
+    "confirmMessage": "Are you sure you want to place this order?",
+    "noOrders": "You have no orders yet",
+    "ordersHeader": "Your Orders",
+    "items": "Items"
+  },
+  "latestOrder": {
+    "latest": "Latest Orders",
+    "history": "Order History"
   },
   "favorite": {
     "title": "Favorites",
@@ -144,5 +151,15 @@
   "successModal": {
     "message": "Your order has been placed successfully!",
     "button": "Close"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "description": "Sorry, we couldn't find the page you're looking for.",
+    "home": "Go to Home"
+  },
+  "error": {
+    "title": "Something went wrong",
+    "description": "An unexpected error has occurred.",
+    "home": "Go to Home"
   }
 }

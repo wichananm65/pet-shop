@@ -1,28 +1,25 @@
 "use client"
 
-import useAddresses from "./useAddresses"
 import * as AddressService from "@/server/service/address/address-service"
 
+// These hooks only call the API. The caller is responsible for calling
+// reload() from their own useAddresses() instance after a mutation so
+// that the displayed list actually updates.
+
 export function useAddAddress() {
-  const { reload } = useAddresses()
   return async (desc: string, phone: string, name: string) => {
     await AddressService.addAddress(desc, phone, name)
-    await reload()
   }
 }
 
 export function useUpdateAddress() {
-  const { reload } = useAddresses()
   return async (id: number, desc: string, phone: string, name: string) => {
     await AddressService.updateAddress(id, desc, phone, name)
-    await reload()
   }
 }
 
 export function useDeleteAddress() {
-  const { reload } = useAddresses()
   return async (id: number) => {
     await AddressService.deleteAddress(id)
-    await reload()
   }
 }

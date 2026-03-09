@@ -55,7 +55,6 @@ const CarouselSpacing = () => {
                                                 width={800}
                                                 height={384}
                                                 className="w-full h-44 sm:h-56 md:h-96 object-cover rounded-md"
-                                                style={{ width: '100%', height: 'auto' }}
                                                 priority={index === 0}
                                             />
                                         </CardContent>

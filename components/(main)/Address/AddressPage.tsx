@@ -53,6 +53,7 @@ export default function AddressPage() {
             } else {
                 await addAddr(data.desc, data.phone, data.name)
             }
+            await reload()
         } catch (e) {
             console.error(e)
         }
@@ -64,7 +65,10 @@ export default function AddressPage() {
     const cancelDelete = () => setToDelete(null)
     const doDelete = async () => {
         if (toDelete) {
-            try { await deleteAddr(toDelete.addressId) } catch (e) { console.error(e) }
+            try {
+                await deleteAddr(toDelete.addressId)
+                await reload()
+            } catch (e) { console.error(e) }
         }
         setToDelete(null)
     }

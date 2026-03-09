@@ -77,30 +77,35 @@ export default function ProfileButton() {
 
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>
-                        <button onClick={() => router.push("/profile")}>
+                        <Button onClick={() => router.push("/profile")}>
                             {t("profile.account")}
-                        </button>
+                        </Button>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        {t("profile.recent_orders")}
+                        <Button onClick={() => router.push("/latest-order")}>
+                            {t("profile.recent_orders")}
+                        </Button>
                     </DropdownMenuItem>
                     <DropdownMenuItem>
-                        <button onClick={() => router.push("/address")}>
+                        <Button onClick={() => router.push("/address")}>
                             {t("profile.saved_addresses")}
-                        </button>
+                        </Button>
                     </DropdownMenuItem>
-                    <div className="flex justify-between">
+                    <DropdownMenu>
                         <Button onClick={() => setLang(lang === "en" ? "th" : "en")}>
                             {t("profile.change_language")}
                             <LanguageSwitch />
                         </Button>
-                    </div>
-
+                    </DropdownMenu>
                 </DropdownMenuGroup>
                 <DropdownMenuItem onClick={handleLogout}>
-                    <LogOutIcon />
-                    {t("profile.logout")}
+                    <Button>
+                        <LogOutIcon />
+                        {t("profile.logout")}
+                    </Button>
+
                 </DropdownMenuItem>
+
             </DropdownMenuContent>
         </DropdownMenu>
     )

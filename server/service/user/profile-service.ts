@@ -8,8 +8,6 @@ export type ProfileDto = {
   phone: string
   gender: string
   avatarPic?: string | null
-  favoriteProductId?: number | null
-  favoriteProductIDs?: number[] | null
   mainAddressId?: number | null
 }
 

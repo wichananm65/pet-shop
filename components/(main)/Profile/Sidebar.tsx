@@ -24,7 +24,7 @@ export default function Sidebar({ currentPage }: SidebarProps) {
         {t("profile.account")}
       </a>
       <a
-        href="/orders"
+        href="/latest-order"
         className={`block py-2 px-3 rounded hover:bg-gray-100 ${
           currentPage === "orders" ? "text-orange-600 font-medium" : ""
         }`}

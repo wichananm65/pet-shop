@@ -11,14 +11,7 @@ type User = {
   phone?: string
   gender?: string
   avatarPic?: string
-  favoriteProductId?: number[]
-  // accept both keys for compatibility with backend
-  favoriteProductIDs?: number[]
   mainAddressId?: number | null
-  cartProductId?: number[]
-  cartProductIDs?: number[]
-  // map of productID to quantity
-  cart?: Record<string, number>
 }
 
 type AuthContextType = {

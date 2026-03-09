@@ -1,9 +1,12 @@
 import { API_BASE_URL } from "../api"
 
-export type FavoriteResponse = {
+// Response from POST/DELETE /api/v1/favorites
+export type FavoriteToggleResponse = {
   productId: number
   favoriteProductId: number[]
 }
+
+export type FavoriteResponse = FavoriteProductDto[]
 
 async function handleJsonResponse<T>(res: Response): Promise<T> {
   if (!res.ok) {
@@ -38,7 +41,7 @@ function authHeaders(): Record<string, string> {
   }
 }
 
-export async function addFavorite(productId: number): Promise<FavoriteResponse> {
+export async function addFavorite(productId: number): Promise<FavoriteToggleResponse> {
   const url = API_BASE_URL ? `${API_BASE_URL}/api/v1/favorites` : "/api/v1/favorites"
   const res = await fetch(url, {
     method: "POST",
@@ -49,10 +52,10 @@ export async function addFavorite(productId: number): Promise<FavoriteResponse> 
     body: JSON.stringify({ productId }),
   })
 
-  return handleJsonResponse<FavoriteResponse>(res)
+  return handleJsonResponse<FavoriteToggleResponse>(res)
 }
 
-export async function removeFavorite(productId: number): Promise<FavoriteResponse> {
+export async function removeFavorite(productId: number): Promise<FavoriteToggleResponse> {
   const url = API_BASE_URL ? `${API_BASE_URL}/api/v1/favorites` : "/api/v1/favorites"
   const res = await fetch(url, {
     method: "DELETE",
@@ -63,7 +66,7 @@ export async function removeFavorite(productId: number): Promise<FavoriteRespons
     body: JSON.stringify({ productId }),
   })
 
-  return handleJsonResponse<FavoriteResponse>(res)
+  return handleJsonResponse<FavoriteToggleResponse>(res)
 }
 
 export type FavoriteProductDto = {

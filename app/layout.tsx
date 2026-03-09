@@ -5,6 +5,7 @@ import NavBar from "@/components/ui/navbar";
 import AuthGate from "@/components/common/AuthGate";
 import AuthProvider from "@/components/common/AuthProvider";
 import TranslatorProvider from "@/components/common/TranslatorProvider";
+import { FavoritesProvider } from "@/components/common/FavoritesContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,11 +33,13 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <AuthProvider>
-          <TranslatorProvider>
-            <NavBar />
-            <AuthGate />
-            {children}
-          </TranslatorProvider>
+          <FavoritesProvider>
+            <TranslatorProvider>
+              <NavBar />
+              <AuthGate />
+              {children}
+            </TranslatorProvider>
+          </FavoritesProvider>
         </AuthProvider>
       </body>
     </html>

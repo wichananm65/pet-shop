@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { Home, Bell, ShoppingCart, Heart, Search } from 'lucide-react';
+import { Home, ShoppingCart, Heart, Search } from 'lucide-react';
 import ProfileButton from '@/components/common/ProfileButton';
 import useCart from '@/hooks/cart/useCart';
 
@@ -17,9 +17,6 @@ export default function NavBar() {
                 <Link href="/" className="text-white hover:text-orange-100 transition-colors">
                     <Home size={24} />
                 </Link>
-                <button className="text-white hover:text-orange-100 transition-colors">
-                    <Bell size={24} />
-                </button>
                 <Link href="/cart" className="relative text-white hover:text-orange-100 transition-colors">
                     <ShoppingCart size={24} />
                     {cart.items.length > 0 && (
